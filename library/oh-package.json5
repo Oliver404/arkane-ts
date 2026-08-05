@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "description": "Description of the library...",
   "main": "Index.ets",
-  "author": "Oliver Botello",
-  "license": "MIT",
+  "author": {
+    "name": "Oliver Botello",
+    "email": "contact@oliverbotello.com",
+    "url": "https://github.com/Oliver404"
+  },
+  "repository": "https://github.com/Oliver404/arkane-ts/",
+  "license": "../LICENSE",
   "dependencies": {}
 }
