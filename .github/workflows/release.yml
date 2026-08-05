@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Derive version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate version matches library/oh-package.json5
+        run: |
+          PKG_VERSION=$(jq -r '.version' library/oh-package.json5)
+          if [[ "$PKG_VERSION" != "${{ steps.version.outputs.VERSION }}" ]]; then
+            echo "ERROR: tag ${{ github.ref_name }} (=${{ steps.version.outputs.VERSION }}) does not match library/oh-package.json5 version '$PKG_VERSION'"
+            echo "Update library/oh-package.json5 to ${{ steps.version.outputs.VERSION }} and re-tag."
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: docs/requirements-docs.txt
+
+      - name: Install MkDocs + Material + mike
+        run: pip install -r docs/requirements-docs.txt
+
+      - name: Configure git for mike commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy docs with mike
+        run: |
+          mike deploy --push --update-aliases -F docs/mkdocs.yml "${{ steps.version.outputs.VERSION }}" stable
+          mike set-default --push -F docs/mkdocs.yml stable
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
