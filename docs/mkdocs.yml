@@ -1,0 +1,133 @@
+site_name: Arkane TS
+site_description: 2D game engine library for HarmonyOS NEXT (ArkTS)
+site_url: https://oliver404.github.io/arkane-ts/
+repo_url: https://github.com/Oliver404/arkane-ts
+repo_name: Oliver404/arkane-ts
+edit_uri: edit/main/docs/wiki/
+
+docs_dir: wiki
+
+theme:
+  name: material
+  language: en
+  favicon: assets/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      fallback_to_build_date: true
+
+extra:
+  version:
+    provider: mike
+    default: stable
+  social:
+    - icon: material/github
+      link: https://github.com/Oliver404/arkane-ts
+      name: GitHub repository
+  generator: false
+
+copyright: Copyright &copy; 2026 Oliver 404 — Released under the MIT License.
+
+nav:
+  - Home: README.md
+  - Getting started: getting-started.md
+  - Architecture: architecture.md
+  - Core:
+      - Engine: core/engine.md
+      - GameLoop: core/gameloop.md
+      - SceneManager: core/scenemanager.md
+      - Time: core/time.md
+  - Scene:
+      - Scene2D: scene/scene2d.md
+      - Entity: scene/entity.md
+      - Transform: scene/transform.md
+      - SceneContext: scene/scenecontext.md
+  - Render:
+      - Renderer2D: render/renderer2d.md
+      - CanvasRenderer2D: render/canvasrenderer2d.md
+      - Camera2D: render/camera2d.md
+      - RenderContext: render/rendercontext.md
+      - Sprite: render/sprite.md
+      - TextEntity: render/textentity.md
+  - Input:
+      - InputManager: input/inputmanager.md
+      - TouchInput: input/touchinput.md
+  - Events:
+      - EventBus: events/eventbus.md
+  - Math:
+      - Vector2: math/vector2.md
+      - Vector3: math/vector3.md
+      - Rect: math/rect.md
+      - MathUtils: math/mathutils.md
+  - Physics:
+      - PhysicsSystem: physics/physicssystem.md
+      - CollisionSystem: physics/collisionsystem.md
+      - Collider: physics/collider.md
+      - BoxCollider: physics/boxcollider.md
+      - CircleCollider: physics/circlecollider.md
+      - Manifold: physics/manifold.md
+      - Rigidbody: physics/rigidbody.md
+  - Assets:
+      - AssetManager: assets/assetmanager.md
+      - Texture: assets/texture.md
+  - Performance:
+      - PerformanceBudget: perf/performancebudget.md
+  - Cookbook:
+      - Top-down game: cookbook/top-down-game.md
+      - Platformer: cookbook/platformer.md
+      - Endless runner: cookbook/endless-runner.md
+      - Menu system: cookbook/menu-system.md
+  - Examples:
+      - Move and collide: examples/01-move-and-collide.md
+      - Text and sprites: examples/02-text-and-sprites.md
+      - Physics system: examples/03-physics-system.md
+      - Camera and input: examples/04-camera-and-input.md
+      - Assets and events: examples/05-assets-and-events.md

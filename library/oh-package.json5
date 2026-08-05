@@ -1,0 +1,9 @@
+{
+  "name": "@oliver404/arkane-ts",
+  "version": "0.0.1",
+  "description": "Description of the library...",
+  "main": "Index.ets",
+  "author": "Oliver Botello",
+  "license": "MIT",
+  "dependencies": {}
+}
